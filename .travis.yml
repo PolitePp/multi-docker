@@ -14,3 +14,10 @@ after_success:
   - docker build -t politepp/multi-nginx ./nginx
   - docker build -t politepp/multi-server ./server
   - docker build -t politepp/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them 
+  - docker push politepp/multi-client
+  - docker push politepp/multi-nginx
+  - docker push politepp/multi-server
+  - docker push politepp/multi-worker
